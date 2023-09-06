@@ -1,0 +1,191 @@
+@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Sans&family=Montserrat&family=Poppins:wght@500&family=Sora:wght@500&display=swap");
+* {
+  box-sizing: border-box;
+  margin: 0 auto;
+  /* border: 1px solid red; */
+  color: #ffffff;
+  font-family: "Poppins", sans-serif;
+}
+
+button {
+  background-color: gray;
+}
+
+body {
+  background: radial-gradient(
+    circle,
+    rgba(129, 51, 227, 1) 0%,
+    rgba(106, 10, 172, 1) 0%,
+    rgba(14, 12, 12, 1) 29%,
+    rgba(0, 0, 0, 1) 100%
+  );
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center center;
+  width: 100%;
+  height: 100vh;
+}
+
+nav {
+  display: flex;
+  justify-content: space-between;
+  color: white;
+  padding: 10px;
+  height: 5vh;
+}
+
+.nav-links {
+  margin: 0 20px;
+  font-size: 12px;
+}
+
+.nav-link {
+  padding: 0 20px;
+}
+.yellow {
+  color: rgb(254, 254, 78);
+}
+.logo-container {
+  display: flex;
+  margin: 0 20px;
+  align-items: center;
+}
+.logo-image {
+  width: 18px;
+  height: 18px;
+  margin-right: 4px;
+}
+.logo-text {
+  font-family: "IBM Plex Sans", sans-serif;
+  color: white;
+  font-size: 14px;
+  white-space: nowrap;
+}
+
+footer {
+  height: 15vh;
+  display: flex;
+  align-items: center;
+}
+.card {
+  width: 100px;
+  height: 150px;
+  background-color: gray;
+  margin: 10px;
+}
+
+main {
+  height: 80vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.computer-hand__cards {
+  display: flex;
+  align-self: flex-start;
+}
+
+.dealer-image {
+  width: 100px;
+  border-radius: 99px;
+}
+
+.wager-pot {
+  font-family: "Sora", sans-serif;
+  font-size: 50px;
+}
+
+.user-hand__cards {
+  display: flex;
+  align-self: flex-end;
+}
+
+.card {
+  width: 100px;
+  height: 160px;
+  background-color: #ccc;
+  margin: 5px;
+}
+
+.deal-button {
+  padding: 8px;
+  border-radius: 40px;
+  width: 100px;
+  background-color: black;
+  border: 3px solid yellow;
+  margin-right: 30px;
+}
+.stand-button,
+.hit-button {
+  background-color: black;
+  width: 82px;
+  border-radius: 20px;
+  border: 1.75px solid;
+  padding: 8px;
+}
+
+.stand-button {
+  color: rgb(235, 78, 78);
+}
+
+.hit-button {
+  color: rgb(49, 180, 49);
+}
+
+.balance-amount {
+  font-family: "Montserrat", sans-serif;
+}
+
+.icon {
+  width: 15px;
+  height: 15px;
+  filter: brightness(100);
+  margin-right: 6px;
+}
+.icon-money {
+  width: 20px;
+  height: 20px;
+}
+
+.game-container {
+  display: flex;
+  flex-direction: row;
+}
+
+.betting-modal {
+  width: 240px;
+  height: 320px;
+  background-color: #796f83;
+  border-radius: 25px;
+  margin: 300px 30px 0;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* Three columns */
+  grid-gap: 10px; /* Adjust the gap between chips */
+  padding: 20px;
+  opacity: 20%;
+}
+
+.chip {
+  width: 50px;
+  height: 50px;
+  border-radius: 99px;
+  background-color: #d3d831;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px dotted black;
+}
+
+/* 
+Right side display 
+*/
+.total {
+  display: flex;
+}
+.user-hand-total {
+  justify-content: end;
+}
+.computer-hand-total {
+  justify-self: end;
+}
