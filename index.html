@@ -36,12 +36,50 @@
       </nav>
       <div class="game-container">
         <div class="betting-modal">
-          <div class="chip">10</div>
-          <div class="chip">50</div>
-          <div class="chip">100</div>
-          <div class="chip">500</div>
-          <div class="chip">1000</div>
-          <div class="chip">All</div>
+          <div>
+            <div class="chip bet-10">10</div>
+            <div class="remove-container">
+              <img
+                class="remove remove-bet-10"
+                src="./images/undo-white.png"
+                alt="undo" />
+            </div>
+          </div>
+          <div class="remove-container">
+            <div class="chip bet-50">50</div>
+            <img
+              class="remove remove-bet-50"
+              src="./images/undo-white.png"
+              alt="undo" />
+          </div>
+          <div class="remove-container">
+            <div class="chip bet-100">100</div>
+            <img
+              class="remove remove-bet-100"
+              src="./images/undo-white.png"
+              alt="undo" />
+          </div>
+          <div class="remove-container">
+            <div class="chip bet-500">500</div>
+            <img
+              class="remove remove-bet-500"
+              src="./images/undo-white.png"
+              alt="undo" />
+          </div>
+          <div class="remove-container">
+            <div class="chip bet-1000">1000</div>
+            <img
+              class="remove remove-bet-1000"
+              src="./images/undo-white.png"
+              alt="undo" />
+          </div>
+          <div class="remove-container">
+            <div class="chip bet-all">All</div>
+            <img
+              class="remove remove-bet-all"
+              src="./images/undo-white.png"
+              alt="undo" />
+          </div>
         </div>
         <main>
           <div>
@@ -54,8 +92,8 @@
             <div class="card"></div>
             <div class="card"></div>
           </div>
-          <div class="wager-pot">
-            50
+          <div class="wager-display-container">
+            <span class="wager-pot"></span>
             <img class="icon-money" src="./images/money2.png" alt="" />
           </div>
 
@@ -71,9 +109,9 @@
       </div>
 
       <footer>
-        <div>
+        <div class="balance-container">
           <h5>Balance</h5>
-          <h2 class="balance-amount">1000</h2>
+          <h2 class="balance-amount"></h2>
         </div>
         <div class="action-buttons">
           <button class="stand-button">

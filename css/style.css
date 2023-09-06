@@ -102,8 +102,8 @@ main {
 }
 
 .card {
-  width: 100px;
-  height: 160px;
+  width: 50px;
+  height: 80px;
   background-color: #ccc;
   margin: 5px;
 }
@@ -133,8 +133,17 @@ main {
   color: rgb(49, 180, 49);
 }
 
+.action-buttons {
+  text-align: center;
+  justify-content: center;
+}
+
 .balance-amount {
   font-family: "Montserrat", sans-serif;
+}
+
+.balance-container {
+  margin-left: 10px;
 }
 
 .icon {
@@ -163,14 +172,13 @@ main {
   grid-template-columns: repeat(2, 1fr); /* Three columns */
   grid-gap: 10px; /* Adjust the gap between chips */
   padding: 20px;
-  opacity: 20%;
 }
 
 .chip {
   width: 50px;
   height: 50px;
   border-radius: 99px;
-  background-color: #d3d831;
+  background-color: #bbbbbb;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -183,9 +191,36 @@ Right side display
 .total {
   display: flex;
 }
-.user-hand-total {
-  justify-content: end;
-}
 .computer-hand-total {
-  justify-self: end;
+  margin-top: 200px;
+}
+.user-hand-total {
+  margin-top: 100px;
+}
+
+.computer-hand-total,
+.user-hand-total {
+  padding: 10px;
+  width: 50px;
+  justify-content: center;
+  display: flex;
+  align-items: center;
+  height: 50px;
+  background-color: #908a8a;
+  border-radius: 99px;
+  position: relative;
+}
+
+.remove-container {
+  text-align: right;
+}
+.remove {
+  width: 14px;
+  filter: invert(43%) sepia(49%) saturate(920%) hue-rotate(314deg)
+    brightness(96%) contrast(99%);
+}
+
+.remove:hover {
+  filter: invert(0%) sepia(0%) saturate(7439%) hue-rotate(55deg) brightness(93%)
+    contrast(107%);
 }
