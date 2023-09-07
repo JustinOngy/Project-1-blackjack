@@ -192,8 +192,8 @@ function endGame() {
   if ((userTotal > computerTotal && userTotal <= 21) || computerTotal > 21) {
     alert("You won");
     startingBalance += betAmount * 2;
-    updateBalanceAndWager();
     betAmount = 0;
+    updateBalanceAndWager();
   } else if (userTotal < computerTotal || userTotal > 21) {
     alert("You Lose");
     betAmount = 0;
