@@ -1,13 +1,20 @@
 @import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Sans&family=Montserrat&family=Poppins:wght@500&family=Sora:wght@500&display=swap");
 
-* {
-  /* border: 1px red solid; */
-}
 body {
   font-family: "Poppins", sans-serif;
   text-align: center;
   color: #ffffff;
   position: fixed;
+  background: radial-gradient(
+    circle,
+    rgba(129, 51, 227, 1) 0%,
+    rgba(106, 10, 172, 1) 0%,
+    rgba(14, 12, 12, 1) 29%,
+    rgba(0, 0, 0, 1) 100%
+  );
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center center;
 }
 .centered-div {
   max-width: 100%;
@@ -34,10 +41,11 @@ html {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  padding: 10px;
 }
 .nav-links {
   margin: 0 20px;
-  font-size: 12px;
+  font-size: 24px;
 }
 
 .nav-link {
@@ -63,21 +71,8 @@ html {
 .logo-text {
   font-family: "IBM Plex Sans", sans-serif;
   color: white;
-  font-size: 14px;
+  font-size: 24px;
   white-space: nowrap;
-}
-
-body {
-  background: radial-gradient(
-    circle,
-    rgba(129, 51, 227, 1) 0%,
-    rgba(106, 10, 172, 1) 0%,
-    rgba(14, 12, 12, 1) 29%,
-    rgba(0, 0, 0, 1) 100%
-  );
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center center;
 }
 
 .content {
@@ -102,13 +97,13 @@ body {
 
 .dealer-image {
   width: 100%;
-  max-width: 60px;
+  max-width: 128px;
   padding: 1%;
   border-radius: 99px;
 }
 .wager-pot {
   font-family: "Sora", sans-serif;
-  font-size: 50px;
+  font-size: 108px;
 }
 .totals {
   visibility: hidden;
@@ -118,27 +113,28 @@ body {
   right: 20%;
 }
 .computer-hand-total {
-  margin-top: 200px;
+  margin-top: 300px;
 }
 .user-hand-total {
-  margin-top: 100px;
+  margin-top: 300px;
 }
 .computer-hand-total,
 .user-hand-total {
   padding: 10px;
-  width: 20px;
+  width: 50px;
   justify-content: center;
   display: flex;
   align-items: center;
-  height: 20px;
+  height: 50px;
   background-color: #908a8a;
   border-radius: 99px;
+  font-size: 30px;
   position: relative;
 }
 .deal-button {
   padding: 8px;
   border-radius: 40px;
-  width: 100px;
+  width: 200px;
   background-color: black;
   border: 3px solid yellow;
   margin-right: 30px;
@@ -154,6 +150,7 @@ body {
 
 .stand-button {
   color: rgb(235, 78, 78);
+  margin-right: 18px;
 }
 
 .hit-button {
@@ -168,35 +165,12 @@ body {
 .balance-amount {
   font-family: "Montserrat", sans-serif;
   line-height: 1px;
+  font-size: 50px;
 }
 
-.balance-container {
-  width: 100px;
-  margin-left: 30px;
-  text-align: center;
-  margin-bottom: 20px;
-}
-
-.icon {
-  width: 15px;
-  height: 15px;
-  filter: brightness(100);
-  margin-right: 6px;
-}
-.icon-money {
-  width: 20px;
-  height: 20px;
-}
-#hit {
-  width: 100px;
-  height: 50px;
-  font-size: 20px;
-}
-
-#stay {
-  width: 100px;
-  height: 50px;
-  font-size: 20px;
+.balance-text {
+  margin-bottom: -10px;
+  font-size: 24px;
 }
 
 /* FOOTER */
@@ -205,7 +179,9 @@ body {
 }
 
 .balance-container {
-  margin-left: 10px;
+  margin-left: 30px;
+  margin-bottom: 20px;
+  padding: 30px;
   width: 100px;
   margin-left: 30px;
   text-align: center;
@@ -218,10 +194,11 @@ body {
 .stand-button,
 .hit-button {
   background-color: black;
-  width: 82px;
-  border-radius: 20px;
-  border: 1.75px solid;
-  padding: 8px;
+  width: 164px;
+  border-radius: 50px;
+  border: 2.5px solid;
+  padding: 16px;
+  font-size: 30px;
 }
 
 .stand-button {
@@ -230,28 +207,27 @@ body {
 .hit-button {
   color: rgb(49, 180, 49);
 }
-.action-buttons {
-  text-align: center;
-  justify-content: center;
-}
+
 .icon {
-  width: 15px;
-  height: 15px;
+  width: 28px;
+  height: 28px;
   filter: brightness(100);
-  margin-right: 6px;
+  margin-right: 12px;
+  vertical-align: text-top;
 }
 .icon-money {
-  width: 20px;
-  height: 20px;
+  width: 36px;
+  height: 36px;
 }
 .deal-button {
-  padding: 8px;
+  padding: 16px;
   border-radius: 40px;
-  width: 100px;
+  width: 200px;
   background-color: black;
   border: 3px solid yellow;
   margin-right: 30px;
   color: #fff;
+  font-size: 30px;
 }
 
 .sidebar {
@@ -261,9 +237,9 @@ body {
   grid-template-columns: repeat(2, 1fr);
   grid-gap: 10px;
   width: 20%;
-  max-width: 200px;
+  max-width: 400px;
   min-width: 100px;
-  max-height: 200px;
+  max-height: 400px;
   min-height: 100px;
   background-color: #555;
   color: #fff;
@@ -289,7 +265,7 @@ body {
   text-align: right;
 }
 .remove {
-  width: 14px;
+  width: 24px;
   filter: invert(43%) sepia(49%) saturate(920%) hue-rotate(314deg)
     brightness(96%) contrast(99%);
 }

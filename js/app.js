@@ -149,13 +149,20 @@ function calculateValue(hand) {
 function renderHands() {
   renderHand(userArray, "user-hand-container");
 
-  renderHand(computerArray, "computer-hand-container");
+  const computerHandContainer = document.getElementById(
+    "computer-hand-container"
+  );
+  const computerHandHtml = `<div class="card large ${computerArray[0].face}"></div>`;
+  const secondCardHtml = `<div class="card large back-red"></div>`;
+
+  computerHandContainer.innerHTML = computerHandHtml + secondCardHtml;
+  computerHandTotal.innerText = computerArray[0].value;
 }
 
 function renderHand(hand, containerId) {
   let handHtml = "";
   hand.forEach(function (card) {
-    handHtml += `<div class="card ${card.face}"></div>`;
+    handHtml += `<div class="card large ${card.face}"></div>`;
   });
   document.getElementById(containerId).innerHTML = handHtml;
 }
@@ -165,7 +172,6 @@ function userHit() {
     userArray.push(shuffledDeck.pop());
     calculateValues();
     renderHands();
-    computerHandTotal.innerText = computerTotal;
     userHandTotal.innerText = userTotal;
     if (userTotal > 21) {
       endGame();
@@ -187,6 +193,8 @@ function userStand() {
 }
 
 function endGame() {
+  renderHand(computerArray, "computer-hand-container");
+
   gameOver = true;
   sidebar.style.visibility = "visible";
   if ((userTotal > computerTotal && userTotal <= 21) || computerTotal > 21) {
@@ -224,7 +232,7 @@ let startingBalance = 1000;
 let betAmount = 0;
 currentBalance.innerHTML = startingBalance;
 wagerAmount.innerHTML = betAmount;
-//Bet amount display
+
 function updateBalanceAndWager() {
   currentBalance.innerHTML = startingBalance;
   wagerAmount.innerHTML = betAmount;
