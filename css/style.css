@@ -24,6 +24,10 @@ body {
   /* border: 2px red solid; */
 }
 
+button {
+  cursor: pointer;
+}
+
 body,
 html {
   margin: 0;
@@ -50,6 +54,7 @@ html {
 
 .nav-link {
   padding: 0 20px;
+  cursor: pointer;
 }
 .yellow {
   color: rgb(254, 254, 78);
@@ -100,6 +105,7 @@ html {
   max-width: 128px;
   padding: 0.5%;
   border-radius: 99px;
+  
 }
 .wager-pot {
   font-family: "Sora", sans-serif;
@@ -240,9 +246,9 @@ html {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   grid-gap: 10px;
-  width: 20%;
-  max-width: 400px;
-  min-width: 100px;
+  width: 18%;
+  max-width: 300px;
+  min-width: 200px;
   max-height: 400px;
   min-height: 100px;
   background-color: #555;
@@ -294,4 +300,12 @@ html {
 }
 .chip:hover {
   background-color: gray;
+}
+
+.green-text {
+  color: green;
+}
+
+.red-text {
+  color: rgb(226, 67, 73);
 }

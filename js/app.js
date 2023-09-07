@@ -39,6 +39,8 @@ const hitButton = document.querySelector(".hit-button");
 const standButton = document.querySelector(".stand-button");
 const actionButtons = document.querySelector(".action-buttons");
 
+const dealerProfileImage = document.querySelector(".dealer-image");
+
 const totalsVisable = document.querySelector(".totals");
 const computerHandTotal = document.querySelector(".computer-hand-total");
 const userHandTotal = document.querySelector(".user-hand-total");
@@ -180,7 +182,7 @@ function renderHand(hand, containerId) {
 }
 
 function userHit() {
-  if (!gameOver && userArray.length >= 2 && computerTotal < 21) {
+  if (!gameOver && userArray.length >= 2 && userTotal < 21) {
     userArray.push(shuffledDeck.pop());
     calculateValues();
     renderHands();
@@ -213,13 +215,13 @@ function endGame() {
 
   if ((userTotal > computerTotal && userTotal <= 21) || computerTotal > 21) {
     startingBalance += betAmount * 2;
-    betAmount = 0;
     updateBalanceAndWager();
-    endGameMessage.innerText = "Congratulations you won !!";
+    endGameMessage.innerHTML = `Congratulations you won <span class="green-text">${betAmount}</span> !!`;
+    betAmount = 0;
   } else if (userTotal < computerTotal || userTotal > 21) {
     betAmount = 0;
     updateBalanceAndWager();
-    endGameMessage.innerText = "You lose, better luck next time!";
+    endGameMessage.innerHTML = `<span class="red-text">You lose, better luck next time!</span>`;
   } else {
     startingBalance += betAmount;
     betAmount = 0;
@@ -227,6 +229,18 @@ function endGame() {
     endGameMessage.innerText = "It was a tie";
   }
 }
+
+function helpInfo() {
+  alert(
+    "The rules of blackjack are simple. You are dealt cards, which have the face value shown on them. You need to get a hand with a score of as close to 21 as possible, without going over it. Go over 21 and you're out."
+  );
+}
+
+function leaveOption() {
+  alert("Leave? ... there is no leaving lol ");
+}
+
+// dealerProfileImage.addEventListener("click", )
 
 // function checkForBlackjack() {}
 
@@ -237,12 +251,14 @@ function endGame() {
 dealButton.addEventListener("click", dealStartingCards);
 hitButton.addEventListener("click", userHit);
 standButton.addEventListener("click", userStand);
+helpButton.addEventListener("click", helpInfo);
+leaveButton.addEventListener("click", leaveOption);
 
 //=====================================================================
 // ================      Beginning balance       ======================
 //=====================================================================
 
-let startingBalance = 1000;
+let startingBalance = 10000;
 let betAmount = 0;
 currentBalance.innerHTML = startingBalance;
 wagerAmount.innerHTML = betAmount;
