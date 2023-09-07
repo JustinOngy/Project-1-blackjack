@@ -41,8 +41,6 @@ const userHandTotal = document.querySelector(".user-hand-total");
 //=====================================================================
 // ================ CSS CARD LIBRARY - Function Build Deck ============
 //=====================================================================
-
-/*----- constants -----*/
 const suits = ["s", "c", "d", "h"];
 const ranks = [
   "02",
@@ -60,15 +58,13 @@ const ranks = [
   "A",
 ];
 
-// Build an 'original' deck of 'card' objects used to create shuffled decks
+
 const originalDeck = buildOriginalDeck();
 renderDeckInContainer(
   originalDeck,
   document.getElementById("original-deck-container")
 );
-/*----- app's state (variables) -----*/
 let shuffledDeck;
-/*----- cached element references -----*/
 const shuffledContainer = document.getElementById("shuffled-deck-container");
 function getNewShuffledDeck() {
   // Create a copy of the originalDeck (leave originalDeck untouched!)
@@ -116,10 +112,8 @@ function buildOriginalDeck() {
   return deck;
 }
 renderNewShuffledDeck();
-
-
 //=====================================================================
-// ================ CSS CARD LIBRARY - Function Build Deck ============
+// ================  Game Functions      ==============================
 //=====================================================================
 
 function dealStartingCards() {
@@ -169,41 +163,53 @@ function renderHand(hand, containerId) {
 }
 
 function userHit() {
-  if (!gameOver && userArray.length >= 2) {
+  if (!gameOver && userArray.length >= 2 && computerTotal < 21) {
     userArray.push(shuffledDeck.pop());
     calculateValues();
     renderHands();
-    if (userTotalValue > 21) {
+    computerHandTotal.innerText = computerTotal;
+    userHandTotal.innerText = userTotal;
+    if (userTotal > 21) {
       endGame();
     }
   }
 }
-hitButton.addEventListener("click", userHit);
 
 function userStand() {
-  if (!gameOver) {
-    while (computerValue < 17) {
+  if (!gameOver && userArray.length >= 2) {
+    while (computerTotal < 17) {
       computerArray.push(shuffledDeck.pop());
-      calculateValue();
+      calculateValues();
+      renderHands();
+      computerHandTotal.innerText = computerTotal;
+      userHandTotal.innerText = userTotal;
     }
     endGame();
   }
 }
-standButton.addEventListener("click", userStand);
 
 function endGame() {
   gameOver = true;
-  if (userValue > computerValue) {
-    console.log("You won");
-    startingBalance = betAmount * 2;
-  } else if (userValue < computerValue) {
-    console.log("You Lose");
-  } else startingBalance = betAmount;
-  console.log("Tie");
+  if ((userTotal > computerTotal && userTotal <= 21) || computerTotal > 21) {
+    alert("You won");
+    startingBalance += betAmount * 2;
+  } else if (userTotal < computerTotal || userTotal > 21) {
+    alert("You Lose");
+  } else {
+    startingBalance += betAmount;
+    alert("Tie");
+  }
 }
-dealButton.addEventListener("click", dealStartingCards);
 
 // function checkForBlackjack() {}
+
+//=====================================================================
+// ================      Action buttons          ======================
+//=====================================================================
+
+dealButton.addEventListener("click", dealStartingCards);
+hitButton.addEventListener("click", userHit);
+standButton.addEventListener("click", userStand);
 
 //=====================================================================
 // ================      Beginning balance       ======================
