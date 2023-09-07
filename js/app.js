@@ -37,6 +37,7 @@ const leaveButton = document.querySelector(".leave-link");
 const dealButton = document.querySelector(".deal-button");
 const hitButton = document.querySelector(".hit-button");
 const standButton = document.querySelector(".stand-button");
+const actionButtons = document.querySelector(".action-buttons");
 
 const totalsVisable = document.querySelector(".totals");
 const computerHandTotal = document.querySelector(".computer-hand-total");
@@ -123,10 +124,12 @@ function dealStartingCards() {
   userArray = [];
   computerArray = [];
   gameOver = false;
+  endGameMessage.innerText = "";
   userArray.push(shuffledDeck.pop(), shuffledDeck.pop());
   computerArray.push(shuffledDeck.pop(), shuffledDeck.pop());
   calculateValues();
   totalsVisable.style.visibility = "visible";
+  actionButtons.style.visibility = "visible";
   sidebar.style.visibility = "hidden";
   computerHandTotal.innerText = computerTotal;
   userHandTotal.innerText = userTotal;
@@ -206,16 +209,17 @@ function endGame() {
   renderHand(computerArray, "computer-hand-container");
   gameOver = true;
   sidebar.style.visibility = "visible";
+  actionButtons.style.visibility = "hidden";
 
   if ((userTotal > computerTotal && userTotal <= 21) || computerTotal > 21) {
     startingBalance += betAmount * 2;
     betAmount = 0;
     updateBalanceAndWager();
-    endGameMessage.innerText = "Congratulations you won!";
+    endGameMessage.innerText = "Congratulations you won !!";
   } else if (userTotal < computerTotal || userTotal > 21) {
     betAmount = 0;
     updateBalanceAndWager();
-    endGameMessage.innerText = "You Lose";
+    endGameMessage.innerText = "You lose, better luck next time!";
   } else {
     startingBalance += betAmount;
     betAmount = 0;
