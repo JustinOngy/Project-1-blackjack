@@ -31,7 +31,7 @@ nav {
   justify-content: space-between;
   color: white;
   padding: 10px;
-  height: 5vh;
+  /* height: 5vh; */
 }
 
 .nav-links {
@@ -63,7 +63,7 @@ nav {
 }
 
 footer {
-  height: 15vh;
+  /* height: 15vh; */
   display: flex;
   align-items: center;
 }
@@ -75,15 +75,10 @@ footer {
 }
 
 main {
-  height: 80vh;
+  /* height: 80vh; */
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-}
-
-.computer-hand__cards {
-  display: flex;
-  align-self: flex-start;
 }
 
 .dealer-image {
@@ -95,18 +90,13 @@ main {
   font-family: "Sora", sans-serif;
   font-size: 50px;
 }
-
-.user-hand__cards {
-  display: flex;
-  align-self: flex-end;
-}
-
+/* 
 .card {
   width: 50px;
   height: 80px;
   background-color: #ccc;
   margin: 5px;
-}
+} */
 
 .deal-button {
   padding: 8px;
@@ -144,6 +134,9 @@ main {
 
 .balance-container {
   margin-left: 10px;
+  width: 100px;
+  margin-left: 30px;
+  text-align: center;
 }
 
 .icon {
@@ -188,8 +181,8 @@ main {
 /* 
 Right side display 
 */
-.total {
-  display: flex;
+.totals {
+  visibility: hidden;
 }
 .computer-hand-total {
   margin-top: 200px;

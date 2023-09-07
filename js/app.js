@@ -1,12 +1,18 @@
-// Setting up global variables
-
+//=====================================================================
+// ================  Setting up global variables ======================
+//=====================================================================
 let userTotal = 0;
 let computerTotal = 0;
 let potentialWinning = 0;
+let userAce = 0;
+let computerAce = 0;
 let userArray = [];
 let computerArray = [];
+let gameOver = false;
 
-//Select Bets
+//=====================================================================
+// ================    DOM Query Selectors       ======================
+//=====================================================================
 const bet10 = document.querySelector(".bet-10");
 const bet50 = document.querySelector(".bet-50");
 const bet100 = document.querySelector(".bet-100");
@@ -22,29 +28,198 @@ const removeBetAll = document.querySelector(".remove-bet-all");
 
 const currentBalance = document.querySelector(".balance-amount");
 const wagerAmount = document.querySelector(".wager-pot");
+const bettingModal = document.querySelector(".betting-modal");
 
 const dealButton = document.querySelector(".deal-button");
 const hitButton = document.querySelector(".hit-button");
 const standButton = document.querySelector(".stand-button");
 
+const totalsVisable = document.querySelector(".totals");
 const computerHandTotal = document.querySelector(".computer-hand-total");
 const userHandTotal = document.querySelector(".user-hand-total");
 
+//=====================================================================
+// ================ CSS CARD LIBRARY - Function Build Deck ============
+//=====================================================================
+
+/*----- constants -----*/
+const suits = ["s", "c", "d", "h"];
+const ranks = [
+  "02",
+  "03",
+  "04",
+  "05",
+  "06",
+  "07",
+  "08",
+  "09",
+  "10",
+  "J",
+  "Q",
+  "K",
+  "A",
+];
+
+// Build an 'original' deck of 'card' objects used to create shuffled decks
+const originalDeck = buildOriginalDeck();
+renderDeckInContainer(
+  originalDeck,
+  document.getElementById("original-deck-container")
+);
+/*----- app's state (variables) -----*/
+let shuffledDeck;
+/*----- cached element references -----*/
+const shuffledContainer = document.getElementById("shuffled-deck-container");
+function getNewShuffledDeck() {
+  // Create a copy of the originalDeck (leave originalDeck untouched!)
+  const tempDeck = [...originalDeck];
+  const newShuffledDeck = [];
+  while (tempDeck.length) {
+    // Get a random index for a card still in the tempDeck
+    const rndIdx = Math.floor(Math.random() * tempDeck.length);
+    // Note the [0] after splice - this is because splice always returns an array and we just want the card object in that array
+    newShuffledDeck.push(tempDeck.splice(rndIdx, 1)[0]);
+  }
+  return newShuffledDeck;
+}
+function renderNewShuffledDeck() {
+  // Create a copy of the originalDeck (leave originalDeck untouched!)
+  shuffledDeck = getNewShuffledDeck();
+  renderDeckInContainer(shuffledDeck, shuffledContainer);
+}
+function renderDeckInContainer(deck, container) {
+  //   container.innerHTML = "";
+  // Let's build the cards as a string of HTML
+  //   let cardsHtml = "";
+  //   deck.forEach(function (card) {
+  //     cardsHtml += `<div class="card ${card.face}"></div>`;
+  //   });
+  // Or, use reduce to 'reduce' the array into a single thing - in this case a string of HTML markup
+  // const cardsHtml = deck.reduce(function(html, card) {
+  //   return html + `<div class="card ${card.face}"></div>`;
+  // }, '');
+  //   container.innerHTML = cardsHtml;
+}
+function buildOriginalDeck() {
+  const deck = [];
+  // Use nested forEach to generate card objects
+  suits.forEach(function (suit) {
+    ranks.forEach(function (rank) {
+      deck.push({
+        // The 'face' property maps to the library's CSS classes for cards
+        face: `${suit}${rank}`,
+        // Setting the 'value' property for game of blackjack, not war
+        value: Number(rank) || (rank === "A" ? 11 : 10),
+      });
+    });
+  });
+  return deck;
+}
+renderNewShuffledDeck();
 
 
-// Beginning balance
+//=====================================================================
+// ================ CSS CARD LIBRARY - Function Build Deck ============
+//=====================================================================
+
+function dealStartingCards() {
+  userArray = [];
+  computerArray = [];
+  gameOver = false;
+  userArray.push(shuffledDeck.pop(), shuffledDeck.pop());
+  computerArray.push(shuffledDeck.pop(), shuffledDeck.pop());
+  calculateValues();
+  totalsVisable.style.visibility = "visible";
+  bettingModal.style.visibility = "hidden";
+  computerHandTotal.innerText = computerTotal;
+  userHandTotal.innerText = userTotal;
+  renderHands();
+}
+
+function calculateValues() {
+  userTotal = calculateValue(userArray);
+  computerTotal = calculateValue(computerArray);
+}
+
+function calculateValue(hand) {
+  let value = 0;
+  let aces = 0;
+  for (let card of hand) {
+    value += card.value;
+    if (card.value === 11) aces++;
+  }
+  while (aces > 0 && value > 21) {
+    value -= 10;
+    aces--;
+  }
+  return value;
+}
+function renderHands() {
+  renderHand(userArray, "user-hand-container");
+
+  renderHand(computerArray, "computer-hand-container");
+}
+
+function renderHand(hand, containerId) {
+  let handHtml = "";
+  hand.forEach(function (card) {
+    handHtml += `<div class="card ${card.face}"></div>`;
+  });
+  document.getElementById(containerId).innerHTML = handHtml;
+}
+
+function userHit() {
+  if (!gameOver && userArray.length >= 2) {
+    userArray.push(shuffledDeck.pop());
+    calculateValues();
+    renderHands();
+    if (userTotalValue > 21) {
+      endGame();
+    }
+  }
+}
+hitButton.addEventListener("click", userHit);
+
+function userStand() {
+  if (!gameOver) {
+    while (computerValue < 17) {
+      computerArray.push(shuffledDeck.pop());
+      calculateValue();
+    }
+    endGame();
+  }
+}
+standButton.addEventListener("click", userStand);
+
+function endGame() {
+  gameOver = true;
+  if (userValue > computerValue) {
+    console.log("You won");
+    startingBalance = betAmount * 2;
+  } else if (userValue < computerValue) {
+    console.log("You Lose");
+  } else startingBalance = betAmount;
+  console.log("Tie");
+}
+dealButton.addEventListener("click", dealStartingCards);
+
+// function checkForBlackjack() {}
+
+//=====================================================================
+// ================      Beginning balance       ======================
+//=====================================================================
+
 let startingBalance = 1000;
 let betAmount = 0;
 currentBalance.innerHTML = startingBalance;
 wagerAmount.innerHTML = betAmount;
-
 //Bet amount display
 function updateBalanceAndWager() {
   currentBalance.innerHTML = startingBalance;
   wagerAmount.innerHTML = betAmount;
 }
 //=====================================================================
-// ================         Add bets             ======================
+// ================       Wager bets             ======================
 //=====================================================================
 
 bet10.addEventListener("click", () => {
@@ -54,7 +229,6 @@ bet10.addEventListener("click", () => {
     updateBalanceAndWager();
   }
 });
-
 bet50.addEventListener("click", () => {
   if (startingBalance >= 50) {
     betAmount += 50;
@@ -62,7 +236,6 @@ bet50.addEventListener("click", () => {
     updateBalanceAndWager();
   }
 });
-
 bet100.addEventListener("click", () => {
   if (startingBalance >= 100) {
     betAmount += 100;
@@ -70,7 +243,6 @@ bet100.addEventListener("click", () => {
     updateBalanceAndWager();
   }
 });
-
 bet500.addEventListener("click", () => {
   if (startingBalance >= 500) {
     betAmount += 500;
@@ -78,7 +250,6 @@ bet500.addEventListener("click", () => {
     updateBalanceAndWager();
   }
 });
-
 bet1000.addEventListener("click", () => {
   if (startingBalance >= 1000) {
     betAmount += 1000;
@@ -93,11 +264,9 @@ betAll.addEventListener("click", () => {
     updateBalanceAndWager();
   }
 });
-
 //=====================================================================
 // ================      Remove bets             ======================
 //=====================================================================
-
 removeBet10.addEventListener("click", () => {
   if (betAmount >= 10) {
     startingBalance += 10;
@@ -105,7 +274,6 @@ removeBet10.addEventListener("click", () => {
     updateBalanceAndWager();
   }
 });
-
 removeBet50.addEventListener("click", () => {
   if (betAmount >= 50) {
     startingBalance += 50;
@@ -113,7 +281,6 @@ removeBet50.addEventListener("click", () => {
     updateBalanceAndWager();
   }
 });
-
 removeBet100.addEventListener("click", () => {
   if (betAmount >= 100) {
     startingBalance += 100;
@@ -121,7 +288,6 @@ removeBet100.addEventListener("click", () => {
     updateBalanceAndWager();
   }
 });
-
 removeBet500.addEventListener("click", () => {
   if (betAmount >= 500) {
     startingBalance += 500;
@@ -129,7 +295,6 @@ removeBet500.addEventListener("click", () => {
     updateBalanceAndWager();
   }
 });
-
 removeBet1000.addEventListener("click", () => {
   if (betAmount >= 1000) {
     startingBalance += 1000;
@@ -137,7 +302,6 @@ removeBet1000.addEventListener("click", () => {
     updateBalanceAndWager();
   }
 });
-
 removeBetAll.addEventListener("click", () => {
   if (betAmount > 0) {
     startingBalance += betAmount;
@@ -145,14 +309,3 @@ removeBetAll.addEventListener("click", () => {
     updateBalanceAndWager();
   }
 });
-
-// Function
-// buildOriginalDeck();
-// getNewShuffledDeck();
-// renderDeckInContainer();
-
-// chooseBetAmount();
-// displayPotentialWinning();
-
-// dealTwoCardsToPlayer();
-// dealTwoCardsToComputer();
