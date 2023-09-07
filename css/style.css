@@ -207,7 +207,10 @@ html {
 .hit-button {
   color: rgb(49, 180, 49);
 }
-
+.help-link:hover,
+.leave-link:hover {
+  color: rgb(206, 226, 50);
+}
 .icon {
   width: 28px;
   height: 28px;

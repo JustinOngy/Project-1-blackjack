@@ -9,6 +9,7 @@ let computerAce = 0;
 let userArray = [];
 let computerArray = [];
 let gameOver = false;
+let disableButton = false;
 
 //=====================================================================
 // ================    DOM Query Selectors       ======================
@@ -30,6 +31,9 @@ const currentBalance = document.querySelector(".balance-amount");
 const wagerAmount = document.querySelector(".wager-pot");
 const sidebar = document.querySelector(".sidebar");
 
+const helpButton = document.querySelector(".help-link");
+const leaveButton = document.querySelector(".leave-link");
+
 const dealButton = document.querySelector(".deal-button");
 const hitButton = document.querySelector(".hit-button");
 const standButton = document.querySelector(".stand-button");
@@ -37,6 +41,7 @@ const standButton = document.querySelector(".stand-button");
 const totalsVisable = document.querySelector(".totals");
 const computerHandTotal = document.querySelector(".computer-hand-total");
 const userHandTotal = document.querySelector(".user-hand-total");
+const endGameMessage = document.querySelector(".end-game-message");
 
 //=====================================================================
 // ================ CSS CARD LIBRARY - Function Build Deck ============
@@ -133,6 +138,10 @@ function calculateValues() {
   computerTotal = calculateValue(computerArray);
 }
 
+function enableDealButton() {
+  dealButton.disabled = false;
+}
+
 function calculateValue(hand) {
   let value = 0;
   let aces = 0;
@@ -175,6 +184,7 @@ function userHit() {
     userHandTotal.innerText = userTotal;
     if (userTotal > 21) {
       endGame();
+      computerHandTotal.innerText = computerTotal;
     }
   }
 }
@@ -194,23 +204,23 @@ function userStand() {
 
 function endGame() {
   renderHand(computerArray, "computer-hand-container");
-
   gameOver = true;
   sidebar.style.visibility = "visible";
+
   if ((userTotal > computerTotal && userTotal <= 21) || computerTotal > 21) {
-    alert("You won");
     startingBalance += betAmount * 2;
     betAmount = 0;
     updateBalanceAndWager();
+    endGameMessage.innerText = "Congratulations you won!";
   } else if (userTotal < computerTotal || userTotal > 21) {
-    alert("You Lose");
     betAmount = 0;
     updateBalanceAndWager();
+    endGameMessage.innerText = "You Lose";
   } else {
     startingBalance += betAmount;
-    alert("Tie");
     betAmount = 0;
     updateBalanceAndWager();
+    endGameMessage.innerText = "It was a tie";
   }
 }
 
