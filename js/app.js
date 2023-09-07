@@ -28,7 +28,7 @@ const removeBetAll = document.querySelector(".remove-bet-all");
 
 const currentBalance = document.querySelector(".balance-amount");
 const wagerAmount = document.querySelector(".wager-pot");
-const bettingModal = document.querySelector(".betting-modal");
+const sidebar = document.querySelector(".sidebar");
 
 const dealButton = document.querySelector(".deal-button");
 const hitButton = document.querySelector(".hit-button");
@@ -57,8 +57,6 @@ const ranks = [
   "K",
   "A",
 ];
-
-
 const originalDeck = buildOriginalDeck();
 renderDeckInContainer(
   originalDeck,
@@ -124,7 +122,7 @@ function dealStartingCards() {
   computerArray.push(shuffledDeck.pop(), shuffledDeck.pop());
   calculateValues();
   totalsVisable.style.visibility = "visible";
-  bettingModal.style.visibility = "hidden";
+  sidebar.style.visibility = "hidden";
   computerHandTotal.innerText = computerTotal;
   userHandTotal.innerText = userTotal;
   renderHands();
@@ -190,14 +188,21 @@ function userStand() {
 
 function endGame() {
   gameOver = true;
+  sidebar.style.visibility = "visible";
   if ((userTotal > computerTotal && userTotal <= 21) || computerTotal > 21) {
     alert("You won");
     startingBalance += betAmount * 2;
+    updateBalanceAndWager();
+    betAmount = 0;
   } else if (userTotal < computerTotal || userTotal > 21) {
     alert("You Lose");
+    betAmount = 0;
+    updateBalanceAndWager();
   } else {
     startingBalance += betAmount;
     alert("Tie");
+    betAmount = 0;
+    updateBalanceAndWager();
   }
 }
 

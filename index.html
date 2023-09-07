@@ -3,126 +3,125 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
-    <link rel="stylesheet" href="./css/card-library/cardstarter.css" />
+    <title>Exciting new blackjack game - JUST WIN CASINO</title>
     <link rel="stylesheet" href="./css/style.css" />
+    <link rel="stylesheet" href="./css/card-library/css/cardstarter.min.css" />
   </head>
-  <body>
-    <div class="background">
-      <nav>
-        <div class="logo-container">
-          <img
-            class="logo-image"
-            src="./images/casino-chip_2460463.png"
-            alt="Just Win Casino" />
-          <h1 class="logo-text">
-            | JUST <span class="yellow">WIN</span> CASINO
-          </h1>
-        </div>
-        <div class="nav-links">
-          <a class="nav-link">
-            <img
-              class="icon"
-              src="./images/help-white.png"
-              alt="stand" />Help</a
-          >
-          <a class="nav-link">
-            <img
-              class="icon"
-              src="./images/leave-white.png"
-              alt="stand" />Leave</a
-          >
-        </div>
-      </nav>
-      <div class="game-container">
-        <div class="betting-modal">
-          <div>
-            <div class="chip bet-10">10</div>
-            <div class="remove-container">
-              <img
-                class="remove remove-bet-10"
-                src="./images/undo-white.png"
-                alt="undo" />
-            </div>
-          </div>
-          <div class="remove-container">
-            <div class="chip bet-50">50</div>
-            <img
-              class="remove remove-bet-50"
-              src="./images/undo-white.png"
-              alt="undo" />
-          </div>
-          <div class="remove-container">
-            <div class="chip bet-100">100</div>
-            <img
-              class="remove remove-bet-100"
-              src="./images/undo-white.png"
-              alt="undo" />
-          </div>
-          <div class="remove-container">
-            <div class="chip bet-500">500</div>
-            <img
-              class="remove remove-bet-500"
-              src="./images/undo-white.png"
-              alt="undo" />
-          </div>
-          <div class="remove-container">
-            <div class="chip bet-1000">1000</div>
-            <img
-              class="remove remove-bet-1000"
-              src="./images/undo-white.png"
-              alt="undo" />
-          </div>
-          <div class="remove-container">
-            <div class="chip bet-all">All</div>
-            <img
-              class="remove remove-bet-all"
-              src="./images/undo-white.png"
-              alt="undo" />
-          </div>
-        </div>
-        <main>
-          <div>
-            <img
-              class="dealer-image"
-              src="./images/dealer2.png"
-              alt="dealer photo" />
-          </div>
-          <div id="computer-hand-container" class="hand-container"></div>
-          <div class="wager-display-container">
-            <span class="wager-pot"></span>
-            <img class="icon-money" src="./images/money2.png" alt="" />
-          </div>
 
-          <div id="user-hand-container" class="hand-container"></div>
-        </main>
+  <body>
+    <div class="navbar">
+      <div class="logo-container">
+        <img
+          class="logo-image"
+          src="./images/casino-chip_2460463.png"
+          alt="Just Win Casino" />
+        <h1 class="logo-text">| JUST <span class="yellow">WIN</span> CASINO</h1>
+      </div>
+      <div class="nav-links">
+        <a class="nav-link">
+          <img class="icon" src="./images/help-white.png" alt="stand" />Help</a
+        >
+        <a class="nav-link">
+          <img
+            class="icon"
+            src="./images/leave-white.png"
+            alt="stand" />Leave</a
+        >
+      </div>
+    </div>
+
+    <div class="content">
+      <div class="sidebar">
+        <div>
+          <div class="chip bet-10">10</div>
+          <div class="remove-container">
+            <img
+              class="remove remove-bet-10"
+              src="./images/undo-white.png"
+              alt="undo" />
+          </div>
+        </div>
+        <div class="remove-container">
+          <div class="chip bet-50">50</div>
+          <img
+            class="remove remove-bet-50"
+            src="./images/undo-white.png"
+            alt="undo" />
+        </div>
+        <div class="remove-container">
+          <div class="chip bet-100">100</div>
+          <img
+            class="remove remove-bet-100"
+            src="./images/undo-white.png"
+            alt="undo" />
+        </div>
+        <div class="remove-container">
+          <div class="chip bet-500">500</div>
+          <img
+            class="remove remove-bet-500"
+            src="./images/undo-white.png"
+            alt="undo" />
+        </div>
+        <div class="remove-container">
+          <div class="chip bet-1000">1000</div>
+          <img
+            class="remove remove-bet-1000"
+            src="./images/undo-white.png"
+            alt="undo" />
+        </div>
+        <div class="remove-container">
+          <div class="chip bet-all">All</div>
+          <img
+            class="remove remove-bet-all"
+            src="./images/undo-white.png"
+            alt="undo" />
+        </div>
+      </div>
+      <div class="totals">
+        <div class="computer-hand-total"></div>
+        <div class="user-hand-total"></div>
+      </div>
+
+      <div class="centered-div">
+        <div>
+          <img
+            class="dealer-image"
+            src="./images/dealer2.png"
+            alt="dealer photo" />
+        </div>
+        <div id="computer-hand-container" class="hand-container"></div>
+        <div class="wager-display-container">
+          <span class="wager-pot"></span>
+          <img class="icon-money" src="./images/money2.png" alt="" />
+        </div>
+
+        <div id="user-hand-container" class="hand-container"></div>
         <div class="totals">
           <div class="computer-hand-total"></div>
           <div class="user-hand-total"></div>
         </div>
       </div>
-
-      <footer>
-        <div class="balance-container">
-          <h5>Balance</h5>
-          <h2 class="balance-amount"></h2>
-        </div>
-        <div class="action-buttons">
-          <button class="stand-button">
-            <img class="icon" src="./images/stand.png" alt="stand" />Stand
-          </button>
-
-          <button class="hit-button">
-            <img class="icon" src="./images/hit-white.png" alt="hit" />Hit
-          </button>
-        </div>
-
-        <button class="deal-button">
-          <img class="icon" src="./images/deal-white.png" alt="deal" />Deal
-        </button>
-      </footer>
     </div>
 
+    <div class="footer">
+      <div class="balance-container">
+        <h5>Balance</h5>
+        <h2 class="balance-amount">0</h2>
+      </div>
+      <div class="action-buttons">
+        <button class="stand-button">
+          <img class="icon" src="./images/stand.png" alt="stand" />Stand
+        </button>
+
+        <button class="hit-button">
+          <img class="icon" src="./images/hit-white.png" alt="hit" />Hit
+        </button>
+      </div>
+
+      <button class="deal-button">
+        <img class="icon" src="./images/deal-white.png" alt="deal" />Deal
+      </button>
+    </div>
     <script src="./js/app.js"></script>
   </body>
 </html>

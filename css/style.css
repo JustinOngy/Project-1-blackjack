@@ -1,39 +1,42 @@
 @import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Sans&family=Montserrat&family=Poppins:wght@500&family=Sora:wght@500&display=swap");
+
 * {
-  box-sizing: border-box;
-  margin: 0 auto;
-  /* border: 1px solid red; */
-  color: #ffffff;
-  font-family: "Poppins", sans-serif;
+  /* border: 1px red solid; */
 }
-
-button {
-  background-color: gray;
-}
-
 body {
-  background: radial-gradient(
-    circle,
-    rgba(129, 51, 227, 1) 0%,
-    rgba(106, 10, 172, 1) 0%,
-    rgba(14, 12, 12, 1) 29%,
-    rgba(0, 0, 0, 1) 100%
-  );
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center center;
+  font-family: "Poppins", sans-serif;
+  text-align: center;
+  color: #ffffff;
+  position: fixed;
+}
+.centered-div {
+  max-width: 100%;
   width: 100%;
-  height: 100vh;
+  height: 100%;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  /* border: 2px red solid; */
 }
 
-nav {
+body,
+html {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  width: 100%;
+  font-family: Arial, sans-serif;
+  color: #ffffff;
+}
+/* NAVBAR */
+.navbar {
+  width: 100%;
+  height: 6%;
+  color: #fff;
   display: flex;
   justify-content: space-between;
-  color: white;
-  padding: 10px;
-  /* height: 5vh; */
+  align-items: center;
 }
-
 .nav-links {
   margin: 0 20px;
   font-size: 12px;
@@ -44,6 +47,10 @@ nav {
 }
 .yellow {
   color: rgb(254, 254, 78);
+}
+
+.hidden {
+  visibility: hidden;
 }
 .logo-container {
   display: flex;
@@ -62,42 +69,74 @@ nav {
   white-space: nowrap;
 }
 
-footer {
-  /* height: 15vh; */
-  display: flex;
-  align-items: center;
-}
-.card {
-  width: 100px;
-  height: 150px;
-  background-color: gray;
-  margin: 10px;
+body {
+  background: radial-gradient(
+    circle,
+    rgba(129, 51, 227, 1) 0%,
+    rgba(106, 10, 172, 1) 0%,
+    rgba(14, 12, 12, 1) 29%,
+    rgba(0, 0, 0, 1) 100%
+  );
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center center;
 }
 
-main {
-  /* height: 80vh; */
+.content {
+  height: 70%;
   display: flex;
-  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.footer {
+  width: 100%;
+  height: 15%;
+  color: #fff;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  bottom: 0;
   justify-content: space-between;
 }
 
 .dealer-image {
-  width: 100px;
+  width: 100%;
+  max-width: 60px;
+  padding: 1%;
   border-radius: 99px;
 }
-
 .wager-pot {
   font-family: "Sora", sans-serif;
   font-size: 50px;
 }
-/* 
-.card {
-  width: 50px;
-  height: 80px;
-  background-color: #ccc;
-  margin: 5px;
-} */
-
+.totals {
+  visibility: hidden;
+  position: absolute;
+  transform: translate(-50%, -50%);
+  top: 25%;
+  right: 20%;
+}
+.computer-hand-total {
+  margin-top: 200px;
+}
+.user-hand-total {
+  margin-top: 100px;
+}
+.computer-hand-total,
+.user-hand-total {
+  padding: 10px;
+  width: 20px;
+  justify-content: center;
+  display: flex;
+  align-items: center;
+  height: 20px;
+  background-color: #908a8a;
+  border-radius: 99px;
+  position: relative;
+}
 .deal-button {
   padding: 8px;
   border-radius: 40px;
@@ -130,6 +169,7 @@ main {
 
 .balance-amount {
   font-family: "Montserrat", sans-serif;
+  line-height: 1px;
 }
 
 .balance-container {
@@ -137,6 +177,7 @@ main {
   width: 100px;
   margin-left: 30px;
   text-align: center;
+  margin-bottom: 10px;
 }
 
 .icon {
@@ -149,61 +190,104 @@ main {
   width: 20px;
   height: 20px;
 }
-
-.game-container {
-  display: flex;
-  flex-direction: row;
+#hit {
+  width: 100px;
+  height: 50px;
+  font-size: 20px;
 }
 
-.betting-modal {
-  width: 240px;
-  height: 320px;
-  background-color: #796f83;
+#stay {
+  width: 100px;
+  height: 50px;
+  font-size: 20px;
+}
+
+/* FOOTER */
+.balance-amount {
+  font-family: "Montserrat", sans-serif;
+}
+
+.balance-container {
+  margin-left: 10px;
+  width: 100px;
+  margin-left: 30px;
+  text-align: center;
+}
+
+.action-buttons {
+  text-align: center;
+  justify-content: center;
+}
+.stand-button,
+.hit-button {
+  background-color: black;
+  width: 82px;
+  border-radius: 20px;
+  border: 1.75px solid;
+  padding: 8px;
+}
+
+.stand-button {
+  color: rgb(235, 78, 78);
+}
+.hit-button {
+  color: rgb(49, 180, 49);
+}
+.action-buttons {
+  text-align: center;
+  justify-content: center;
+}
+.icon {
+  width: 15px;
+  height: 15px;
+  filter: brightness(100);
+  margin-right: 6px;
+}
+.icon-money {
+  width: 20px;
+  height: 20px;
+}
+.deal-button {
+  padding: 8px;
+  border-radius: 40px;
+  width: 100px;
+  background-color: black;
+  border: 3px solid yellow;
+  margin-right: 30px;
+  color: #fff;
+}
+
+.sidebar {
+  height: 40%;
   border-radius: 25px;
-  margin: 300px 30px 0;
   display: grid;
   grid-template-columns: repeat(2, 1fr); /* Three columns */
-  grid-gap: 10px; /* Adjust the gap between chips */
+  grid-gap: 10px;
+  width: 20%;
+  max-width: 200px;
+  min-width: 100px;
+  max-height: 200px;
+  min-height: 100px;
+  background-color: #555;
+  color: #fff;
   padding: 20px;
+  box-sizing: border-box;
+  left: 2%;
+  bottom: 15%;
+  position: absolute;
+  visibility: visible;
 }
 
 .chip {
-  width: 50px;
-  height: 50px;
+  width: 50%;
+  height: 50%;
   border-radius: 99px;
-  background-color: #bbbbbb;
+  background-color: #4b4040;
   display: flex;
   align-items: center;
   justify-content: center;
-  border: 2px dotted black;
+  border: 2px solid rgb(238, 255, 0);
 }
-
-/* 
-Right side display 
-*/
-.totals {
-  visibility: hidden;
-}
-.computer-hand-total {
-  margin-top: 200px;
-}
-.user-hand-total {
-  margin-top: 100px;
-}
-
-.computer-hand-total,
-.user-hand-total {
-  padding: 10px;
-  width: 50px;
-  justify-content: center;
-  display: flex;
-  align-items: center;
-  height: 50px;
-  background-color: #908a8a;
-  border-radius: 99px;
-  position: relative;
-}
-
 .remove-container {
   text-align: right;
 }
