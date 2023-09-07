@@ -73,19 +73,15 @@ renderDeckInContainer(
 let shuffledDeck;
 const shuffledContainer = document.getElementById("shuffled-deck-container");
 function getNewShuffledDeck() {
-  // Create a copy of the originalDeck (leave originalDeck untouched!)
   const tempDeck = [...originalDeck];
   const newShuffledDeck = [];
   while (tempDeck.length) {
-    // Get a random index for a card still in the tempDeck
     const rndIdx = Math.floor(Math.random() * tempDeck.length);
-    // Note the [0] after splice - this is because splice always returns an array and we just want the card object in that array
     newShuffledDeck.push(tempDeck.splice(rndIdx, 1)[0]);
   }
   return newShuffledDeck;
 }
 function renderNewShuffledDeck() {
-  // Create a copy of the originalDeck (leave originalDeck untouched!)
   shuffledDeck = getNewShuffledDeck();
   renderDeckInContainer(shuffledDeck, shuffledContainer);
 }
@@ -104,13 +100,10 @@ function renderDeckInContainer(deck, container) {
 }
 function buildOriginalDeck() {
   const deck = [];
-  // Use nested forEach to generate card objects
   suits.forEach(function (suit) {
     ranks.forEach(function (rank) {
       deck.push({
-        // The 'face' property maps to the library's CSS classes for cards
         face: `${suit}${rank}`,
-        // Setting the 'value' property for game of blackjack, not war
         value: Number(rank) || (rank === "A" ? 11 : 10),
       });
     });
