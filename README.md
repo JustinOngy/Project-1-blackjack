@@ -4,6 +4,11 @@
 
 Welcome to JUST WIN CASINO, where excitement awaits you, our latest addition to the gaming lineup is the thrilling Blackjack game, designed to provide an immersive and engaging experience right in your browser. This project is built using a combination of HTML, CSS, and JavaScript, with a primary focus on DOM manipulation for an interactive playthrough.
 
+# Tech Stack Used
+- HTML
+- CSS
+- JAVASCRIPT
+
 # Link
 https://justinongy.github.io/Project-1-blackjack/
 
@@ -22,9 +27,5 @@ More specific problems that I faced whilst programming this project was understa
 # Take aways
 - Keep a clean working environment, as it can save you time and headache
 
-# Tech Stack Used
-- HTML
-- CSS
-- JAVASCRIPT
 
 # Future plans
