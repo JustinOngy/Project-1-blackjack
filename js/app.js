@@ -85,9 +85,7 @@ function renderNewShuffledDeck() {
   shuffledDeck = getNewShuffledDeck();
   renderDeckInContainer(shuffledDeck, shuffledContainer);
 }
-function renderDeckInContainer(deck, container) {
-
-}
+function renderDeckInContainer(deck, container) {}
 function buildOriginalDeck() {
   const deck = [];
   suits.forEach(function (suit) {
@@ -119,6 +117,7 @@ function dealStartingCards() {
   totalsVisable.style.visibility = "visible";
   actionButtons.style.visibility = "visible";
   sidebar.style.visibility = "hidden";
+  dealButton.style.pointerEvents = "none";
   computerHandTotal.innerText = computerTotal;
   userHandTotal.innerText = userTotal;
   renderHands();
@@ -198,6 +197,7 @@ function endGame() {
   gameOver = true;
   sidebar.style.visibility = "visible";
   actionButtons.style.visibility = "hidden";
+  dealButton.style.pointerEvents = "auto";
 
   if ((userTotal > computerTotal && userTotal <= 21) || computerTotal > 21) {
     startingBalance += betAmount * 2;
@@ -225,8 +225,6 @@ function helpInfo() {
 function leaveOption() {
   alert("Leave? ... there is no leaving lol ");
 }
-
-
 
 //=====================================================================
 // ================      Action buttons          ======================
