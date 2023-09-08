@@ -1,8 +1,8 @@
 @import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Sans&family=Montserrat&family=Poppins:wght@500&family=Sora:wght@500&display=swap");
 
-* {
+/* * {
   border: 1px red solid;
-}
+} */
 
 body {
   font-family: "Poppins", sans-serif;
