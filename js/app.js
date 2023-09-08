@@ -136,10 +136,6 @@ function calculateValues() {
   computerTotal = calculateValue(computerArray);
 }
 
-function enableDealButton() {
-  dealButton.disabled = false;
-}
-
 function calculateValue(hand) {
   let value = 0;
   let aces = 0;

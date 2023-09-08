@@ -1,5 +1,9 @@
 @import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Sans&family=Montserrat&family=Poppins:wght@500&family=Sora:wght@500&display=swap");
 
+* {
+  border: 1px red solid;
+}
+
 body {
   font-family: "Poppins", sans-serif;
   text-align: center;
@@ -105,7 +109,6 @@ html {
   max-width: 128px;
   padding: 0.5%;
   border-radius: 99px;
-  
 }
 .wager-pot {
   font-family: "Sora", sans-serif;
@@ -188,7 +191,7 @@ html {
 .balance-container {
   margin-left: 30px;
   margin-bottom: 20px;
-  padding: 30px;
+  /* padding: 30px; */
   width: 100px;
   margin-left: 30px;
   text-align: center;
