@@ -120,6 +120,9 @@ function dealStartingCards() {
   computerArray = [];
   gameOver = false;
   endGameMessage.innerText = "";
+  if (shuffledDeck.length < 4) {
+    renderNewShuffledDeck();
+  }
   userArray.push(shuffledDeck.pop(), shuffledDeck.pop());
   computerArray.push(shuffledDeck.pop(), shuffledDeck.pop());
   calculateValues();
@@ -143,7 +146,7 @@ function calculateValue(hand) {
     value += card.value;
     if (card.value === 11) aces++;
   }
-  while (aces > 0 && value > 21) {
+  while (aces > 0 && hand.length > 2) {
     value -= 10;
     aces--;
   }
@@ -180,6 +183,8 @@ function userHit() {
       endGame();
       computerHandTotal.innerText = computerTotal;
     }
+    computerHandTotal.innerText = computerTotal;
+    userHandTotal.innerText = userTotal;
   }
 }
 
@@ -192,6 +197,8 @@ function userStand() {
       computerHandTotal.innerText = computerTotal;
       userHandTotal.innerText = userTotal;
     }
+    computerHandTotal.innerText = computerTotal;
+    userHandTotal.innerText = userTotal;
     endGame();
   }
 }
