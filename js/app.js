@@ -108,19 +108,54 @@ function dealStartingCards() {
   computerArray = [];
   gameOver = false;
   endGameMessage.innerText = "";
+  sidebar.style.visibility = "hidden";
+  document.getElementById("user-hand-container").innerHTML = "";
+  document.getElementById("computer-hand-container").innerHTML = "";
+  dealButton.style.pointerEvents = "none";
+  computerHandTotal.innerText = "";
+  userHandTotal.innerText = "";
   if (shuffledDeck.length < 4) {
     renderNewShuffledDeck();
   }
-  userArray.push(shuffledDeck.pop(), shuffledDeck.pop());
-  computerArray.push(shuffledDeck.pop(), shuffledDeck.pop());
-  calculateValues();
-  totalsVisable.style.visibility = "visible";
-  actionButtons.style.visibility = "visible";
-  sidebar.style.visibility = "hidden";
-  dealButton.style.pointerEvents = "none";
-  computerHandTotal.innerText = computerTotal;
-  userHandTotal.innerText = userTotal;
-  renderHands();
+
+  function revealUserCard() {
+    userArray.push(shuffledDeck.pop());
+    renderHands();
+    userHandTotal.innerText = calculateTotal(userArray);
+  }
+
+  function revealComputerCard() {
+    computerArray.push(shuffledDeck.pop());
+    renderHands();
+    computerHandTotal.innerText = calculateTotal(computerArray);
+  }
+
+  setTimeout(revealUserCard, 250);
+  setTimeout(revealComputerCard, 1000);
+  setTimeout(revealUserCard, 1750);
+  setTimeout(revealComputerCard, 2500);
+
+  setTimeout(function () {
+    calculateValues();
+    totalsVisable.style.visibility = "visible";
+    actionButtons.style.visibility = "visible";
+    computerHandTotal.innerText = computerTotal;
+    userHandTotal.innerText = userTotal;
+    renderHands();
+  }, 2750);
+}
+
+function renderHands() {
+  if (userArray.length === 1) {
+    const secondCardHtml = `<div class="card large back-red"></div>`;
+    document.getElementById("user-hand-container").innerHTML += secondCardHtml;
+  }
+
+  if (computerArray.length === 1) {
+    const secondCardHtml = `<div class="card large back-red"></div>`;
+    document.getElementById("computer-hand-container").innerHTML +=
+      secondCardHtml;
+  }
 }
 
 function calculateValues() {
@@ -135,7 +170,7 @@ function calculateValue(hand) {
     value += card.value;
     if (card.value === 11) aces++;
   }
-  while (aces > 0 && hand.length > 2) {
+  while (aces > 0 && value > 21) {
     value -= 10;
     aces--;
   }
@@ -164,31 +199,35 @@ function renderHand(hand, containerId) {
 
 function userHit() {
   if (!gameOver && userArray.length >= 2 && userTotal < 21) {
-    userArray.push(shuffledDeck.pop());
-    calculateValues();
-    renderHands();
-    userHandTotal.innerText = userTotal;
-    if (userTotal > 21) {
-      endGame();
+    setTimeout(function () {
+      userArray.push(shuffledDeck.pop());
+      calculateValues();
+      renderHands();
+      userHandTotal.innerText = userTotal;
+      if (userTotal > 21) {
+        endGame();
+        computerHandTotal.innerText = computerTotal;
+      }
       computerHandTotal.innerText = computerTotal;
-    }
-    computerHandTotal.innerText = computerTotal;
-    userHandTotal.innerText = userTotal;
+      userHandTotal.innerText = userTotal;
+    }, 250);
   }
 }
 
 function userStand() {
   if (!gameOver && userArray.length >= 2) {
-    while (computerTotal < 17) {
-      computerArray.push(shuffledDeck.pop());
-      calculateValues();
-      renderHands();
+    setTimeout(function () {
+      while (computerTotal < 17) {
+        computerArray.push(shuffledDeck.pop());
+        calculateValues();
+        renderHands();
+        computerHandTotal.innerText = computerTotal;
+        userHandTotal.innerText = userTotal;
+      }
       computerHandTotal.innerText = computerTotal;
       userHandTotal.innerText = userTotal;
-    }
-    computerHandTotal.innerText = computerTotal;
-    userHandTotal.innerText = userTotal;
-    endGame();
+      endGame();
+    }, 250);
   }
 }
 
@@ -226,6 +265,7 @@ function leaveOption() {
   alert("Leave? ... there is no leaving lol ");
 }
 
+function clickableDealer() {}
 //=====================================================================
 // ================      Action buttons          ======================
 //=====================================================================
@@ -235,7 +275,7 @@ hitButton.addEventListener("click", userHit);
 standButton.addEventListener("click", userStand);
 helpButton.addEventListener("click", helpInfo);
 leaveButton.addEventListener("click", leaveOption);
-
+dealerProfileImage.addEventListener("click", clickableDealer);
 //=====================================================================
 // ================      Beginning balance       ======================
 //=====================================================================
